@@ -1,2 +1,2 @@
-# adventCodeGame
-adventCodeGameToChristmas
+# AdventCodeGame
+AdventCodeGameToChristmas
