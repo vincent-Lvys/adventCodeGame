@@ -12,8 +12,11 @@ public class Result {
         sentOutDay1Part1Result();
         sentOutDay1Part2Result();
         sentOutDay2Part1Result();
+        sentOutDay2Part2Result();
         sentOutDay3Part1Result();
     }
+
+
 
     private static void sentOutDay1Part1Result() {
         List<Integer> measurements = ReadText.readIntTextFile("E:\\TDDpractise\\adventCodeGame\\src\\test\\java\\measurements.txt", "utf-8");
@@ -31,8 +34,14 @@ public class Result {
     private static void sentOutDay2Part1Result() {
         List<String> measurements = ReadText.readStringTextFile("E:\\TDDpractise\\adventCodeGame\\src\\test\\java\\submarineMove.txt", "utf-8");
         SubmarinePostion submarinePostion = new SubmarinePostion();
-        submarinePostion.setDiveDistances(measurements);
-        System.out.println("DAY2:"+submarinePostion.getTotalHorizontal()*submarinePostion.getTotalDepth());
+        submarinePostion.setDiveActions(measurements);
+        System.out.println("DAY2Part1:"+submarinePostion.getTotalHorizontal()*submarinePostion.getAim());
+    }
+    private static void sentOutDay2Part2Result() {
+        List<String> diveActions = ReadText.readStringTextFile("E:\\TDDpractise\\adventCodeGame\\src\\test\\java\\submarineMove.txt", "utf-8");
+        SubmarinePostion submarinePostion = new SubmarinePostion();
+        submarinePostion.setDiveActions(diveActions);
+        System.out.println("DAY2Part2:"+submarinePostion.getTotalDepth()*submarinePostion.getTotalHorizontal());
     }
     private static void sentOutDay3Part1Result() {
         List<String> diagnosticReport = ReadText.readStringTextFile("E:\\TDDpractise\\adventCodeGame\\src\\test\\java\\diagnosticReport.txt", "utf-8");
