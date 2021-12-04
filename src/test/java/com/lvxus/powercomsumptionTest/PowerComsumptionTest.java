@@ -40,10 +40,10 @@ public class PowerComsumptionTest {
         assertThat(powerComsumption.getGammaRate(report),is("101"));
     }
     @Test
-    public void should_return_epsilon_1_when_given_1(){
+    public void should_return_epsilon_0_when_given_1_0(){
         PowerComsumption powerComsumption = new PowerComsumption();
-        List<String> report = Lists.newArrayList("1");
-        assertThat(powerComsumption.getEpsilonRate(report),is("1"));
+        List<String> report = Lists.newArrayList("1","0");
+        assertThat(powerComsumption.getEpsilonRate(report),is("0"));
     }
     @Test
     public void should_return_epsilon_01_when_given_10_10_01(){
@@ -59,9 +59,26 @@ public class PowerComsumptionTest {
     }
 
     @Test
-    public void should_return_20_when_given_101_010(){
+    public void should_return_10_when_given_101_010(){
         PowerComsumption powerComsumption = new PowerComsumption();
-        assertThat(powerComsumption.getComsumption("101","010"),is(20));
+        assertThat(powerComsumption.getComsumption("101","010"),is(10));
+    }
+    @Test
+    public void should_return_oxygenGeneratorRating_10101_when_given_10101_01010(){
+        PowerComsumption powerComsumption = new PowerComsumption();
+        List<String> report = Lists.newArrayList("10101", "01010");
+        assertThat(powerComsumption.getOxygenGeneratorRating(report) ,is("10101"));
+    }
+    @Test
+    public void should_return_CO2ScrubberRating_01010_when_given_10101_01010(){
+        PowerComsumption powerComsumption = new PowerComsumption();
+        List<String> report = Lists.newArrayList("10101", "01010");
+        assertThat(powerComsumption.getCO2ScrubberRating(report) ,is("01010"));
+    }
+    @Test
+    public void should_return_life_support_rating_210_when_given_10101_01010(){
+        PowerComsumption powerComsumption = new PowerComsumption();
+        assertThat(powerComsumption.getComsumption("10101","01010"),is(210));
     }
 
 }
