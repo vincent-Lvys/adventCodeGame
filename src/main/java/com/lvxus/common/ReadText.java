@@ -68,4 +68,32 @@ public class ReadText {
         }
         return result;
     }
+    public static List<String> readBingoBoardTextFile(String path, String encoding) {
+        List<String> result = Lists.newArrayList();
+        File file = new File(path);
+        InputStreamReader inputStreamReader = null;
+        BufferedReader bufferedReader = null;
+        try {
+            if (file.isFile() && file.exists()) {
+                inputStreamReader = new InputStreamReader(new FileInputStream(file), encoding);
+                bufferedReader = new BufferedReader(inputStreamReader);
+                String textLine = null;
+                while ((textLine = bufferedReader.readLine()) != null) {
+                    result.add(textLine.split("\n")[0]);
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                bufferedReader.close();
+                inputStreamReader.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return result;
+    }
 }
